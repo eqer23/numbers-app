@@ -10,28 +10,57 @@
     <h1>Arithmatic</h1>
 
     <form id="sumForm">
-        <label for="num1">Enter first number:</label>
         <input type="number" id="num1" name="num1" required>
 
-        <label for="num2">Enter second number:</label>
+        <label for="num2">+</label>
         <input type="number" id="num2" name="num2" required>
 
-        <button type="button" onclick="calculateSum()">Calculate Sum</button>
+        <button type="button" onclick="add()">Calculate Sum</button>
     </form>
 
     <p id="result"></p>
 
     <script>
-        function calculateSum() {
-            var num1 = parseFloat(document.getElementById('num1').value);
-            var num2 = parseFloat(document.getElementById('num2').value);
+        async function add() {
+            const operand1Input = document.getElementById("operand1");
+            const operand2Input = document.getElementById("operand2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
 
-            if (!isNaN(num1) && !isNaN(num2)) {
-                var sum = num1 + num2;
-                document.getElementById('result').innerText = 'Sum: ' + sum;
-            } else {
-                document.getElementById('result').innerText = 'Please enter valid numbers';
-            }
+            const response = await fetch("https://artihmetic-service.onrender.com/add/" + n + "/" + m);
+            const sum = await response.json();
+            document.getElementById('sum').innerText = 'Sum: ' + sum;
+        }
+
+        async function mult(){
+            const operand1Input = document.getElementById("operand1");
+            const operand2Input = document.getElementById("operand2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+
+            const response = await fetch("https://artihmetic-service.onrender.com/mult/" + n + "/" + m);
+            const sum = await response.json();
+            document.getElementById('sum').innerText = 'Sum: ' + sum;
+        }
+        async function sub(){
+            const operand1Input = document.getElementById("operand1");
+            const operand2Input = document.getElementById("operand2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+
+            const response = await fetch("https://artihmetic-service.onrender.com/sub/" + n + "/" + m);
+            const sum = await response.json();
+            document.getElementById('sum').innerText = 'Sum: ' + sum;
+        }
+        async function div(){
+            const operand1Input = document.getElementById("operand1");
+            const operand2Input = document.getElementById("operand2");
+            let n = operand1Input.value;
+            let m = operand2Input.value;
+
+            const response = await fetch("https://artihmetic-service.onrender.com/div/" + n + "/" + m);
+            const sum = await response.json();
+            document.getElementById('sum').innerText = 'Sum: ' + sum;
         }
     </script>
 
